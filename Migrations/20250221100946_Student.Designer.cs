@@ -11,8 +11,8 @@ using Web2212025.Data;
 namespace Web2212025.Migrations
 {
     [DbContext(typeof(StudentContext))]
-    [Migration("20250221085044_Mi")]
-    partial class Mi
+    [Migration("20250221100946_Student")]
+    partial class Student
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

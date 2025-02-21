@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Web2212025.Data;
 using Web2212025.Models;
+using Microsoft.AspNetCore.Hosting.Server;
 
 namespace Web2212025.Controllers
 {
@@ -18,15 +19,18 @@ namespace Web2212025.Controllers
 
         //action
         [HttpPost("CreateStudent")]
-        public async Task<IActionResult> CreateStudent(Student student)
+        public async Task<IActionResult> CreateStudent([FromBody] Student student)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Student added successfully", student });
+            return CreatedAtAction(nameof(CreateStudent), new { id = student.Id }, student);
 
         }
-
     }
 }

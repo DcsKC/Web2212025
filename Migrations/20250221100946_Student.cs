@@ -5,7 +5,7 @@
 namespace Web2212025.Migrations
 {
     /// <inheritdoc />
-    public partial class Mi : Migration
+    public partial class Student : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

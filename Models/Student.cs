@@ -1,10 +1,16 @@
-﻿namespace Web2212025.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Web2212025.Models
 {
     public class Student
     {
+        [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
+        [Required]
+        public required string Name { get; set; }
+
         public int Age { get; set; }
-        public string Class { get; set; }
+        [Required]
+        public required string Class { get; set; }
     }
 }
