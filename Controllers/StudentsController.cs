@@ -18,19 +18,24 @@ namespace Web2212025.Controllers
         }
 
         //action
-        [HttpPost("CreateStudent")]
-        public async Task<IActionResult> CreateStudent([FromBody] Student student)
+        [HttpPut("UpdatePhoto/{id}")]
+        public async Task<IActionResult> UpdatePhoto(int id, [FromBody] string base64ImageString)
         {
-            if (!ModelState.IsValid)
+            // Tìm sinh viên trong cơ sở dữ liệu bằng ID
+            var student = await _context.Students.FindAsync(id);
+
+            if (student == null)
             {
-                return BadRequest(ModelState);
+                return NotFound(); // Trả về mã lỗi 404 nếu không tìm thấy sinh viên
             }
 
-            _context.Students.Add(student);
+            // Cập nhật trường Photo của sinh viên
+            student.Photo = base64ImageString;
+
+            // Lưu các thay đổi vào cơ sở dữ liệu
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(CreateStudent), new { id = student.Id }, student);
-
+            return Ok(); // Trả về mã lỗi 200 OK nếu cập nhật thành công
         }
     }
 }

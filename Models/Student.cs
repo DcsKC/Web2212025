@@ -12,5 +12,6 @@ namespace Web2212025.Models
         public int Age { get; set; }
         [Required]
         public required string Class { get; set; }
+        public string Photo { get; set; }
     }
 }
